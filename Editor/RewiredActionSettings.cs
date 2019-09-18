@@ -42,7 +42,7 @@ namespace Valax321.RewiredActionProperty.Editor
             if (settings == null)
             {
                 settings = ScriptableObject.CreateInstance<RewiredActionSettings>();
-                settings.m_actionClassname = "RewiredConsts.Action";
+                settings.m_actionClassname = "RewiredConsts.Action, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"; // This is where the class is most likely by default
                 AssetDatabase.CreateFolder("Assets", "Editor");
                 AssetDatabase.CreateAsset(settings, k_SettingsPath);
                 AssetDatabase.SaveAssets();
