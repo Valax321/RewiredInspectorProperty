@@ -1,10 +1,10 @@
 # Rewired Inspector Properties
 
-A set of inspector-editable types that help with safely and efficiently working with [Rewired](https://assetstore.unity.com/packages/tools/utilities/rewired-21676) input actions.
-
-Designed as a modern Unity package.
+A set of inspector-editable types that help with safely and efficiently working with [Rewired](https://assetstore.unity.com/packages/tools/utilities/rewired-21676) input actions. Designed as a modern Unity package.
 
 For use with Unity 2019.2+
+
+![Preview image](showcase.png)
 
 # Usage
 
