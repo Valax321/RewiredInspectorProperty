@@ -1,0 +1,14 @@
+{
+  "name": "io.github.valax321.rewiredactionproperty",
+  "displayName": "Rewired Inspector Properties",
+  "version": "1.0.0",
+  "unity": "2019.2",
+  "description": "Inspector-editable properties for working with Rewired inputs",
+  "keywords": [
+    "Input",
+    "Rewired",
+    "Action"
+  ],
+  "category": "Input",
+  "type": "library"
+}
