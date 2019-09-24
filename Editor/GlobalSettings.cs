@@ -18,7 +18,8 @@ namespace Valax321.RewiredActionProperty.Editor
                     "Rewired",
                     "Action",
                     "Player",
-                    "ID"
+                    "ID",
+                    "Classname"
                 }
             };
         }

@@ -18,8 +18,14 @@ using Valax321.RewiredActionProperty;
 ...
 
 // Member variable declarations
+[SerializeField] private RewiredPlayer m_playerID;
 [SerializeField] private RewiredAction m_jumpAction;
 private Rewired.Player m_player;
+
+...
+
+// Setup the player
+m_player = ReInput.players.GetPlayer(m_playerID);
 
 ...
 
