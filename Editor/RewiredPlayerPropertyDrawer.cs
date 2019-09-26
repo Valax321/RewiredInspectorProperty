@@ -25,6 +25,10 @@ namespace Valax321.RewiredActionProperty.Editor
                 m_selectedIndex = m_playerIDs.IndexOf(id.intValue);
                 m_selectedIndex = EditorGUI.Popup(position, label, m_selectedIndex, m_values.ToArray());
                 id.intValue = m_playerIDs[m_selectedIndex];
+                if (m_selectedIndex < m_playerIDs.Count)
+                    id.intValue = m_playerIDs[m_selectedIndex];
+                else
+                    id.intValue = m_playerIDs[0];
 
                 EditorGUI.EndProperty();
             }
