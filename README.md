@@ -4,7 +4,7 @@ A set of inspector-editable types that help with safely and efficiently working 
 
 For use with Unity 2019.2+
 
-![Preview image](showcase.png)
+![Preview image](Documentation~/showcase.png)
 
 # Usage
 
