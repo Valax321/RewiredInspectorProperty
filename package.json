@@ -1,14 +1,17 @@
 {
-  "name": "io.github.valax321.rewiredactionproperty",
+  "name": "com.valax321.rewiredinspectorproperty",
   "displayName": "Rewired Inspector Properties",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "unity": "2019.2",
-  "description": "Inspector-editable properties for working with Rewired inputs",
+  "description": "Inspector-editable properties for working with Rewired inputs.",
   "keywords": [
     "Input",
     "Rewired",
     "Action"
   ],
   "category": "Input",
-  "type": "library"
+  "type": "library",
+  "dependencies": {
+    "com.unity.settings-manager": "1.0.2"
+  }
 }

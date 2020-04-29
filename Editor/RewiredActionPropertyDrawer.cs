@@ -18,7 +18,9 @@ namespace Valax321.RewiredActionProperty.Editor
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            RewiredPropertyDrawerHelpers.BuildValues(ref m_values, ref m_actionIDs, ref m_invalidClass, RewiredActionSettings.GetOrCreateSettings().m_actionClassname);
+            var value = RewiredSettingsManager.instance.Get<string>("actionClassname");
+            
+            RewiredPropertyDrawerHelpers.BuildValues(ref m_values, ref m_actionIDs, ref m_invalidClass, value);
 
             if (!m_invalidClass)
             {
@@ -38,7 +40,7 @@ namespace Valax321.RewiredActionProperty.Editor
             {
                 var pp = EditorGUI.PrefixLabel(position, label);
                 EditorGUI.HelpBox(pp,
-                    $"Unknown class {RewiredActionSettings.GetOrCreateSettings().m_actionClassname} in settings.",
+                    $"Unknown class {value} in settings.",
                     MessageType.Error);
             }
         }
