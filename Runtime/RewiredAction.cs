@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Valax321.RewiredActionProperty
 {
     /// <summary>
-    /// Wrapper class for proper editor display of a Rewired action.
+    /// Wrapper class for a Rewired action ID.
     /// </summary>
     [System.Serializable]
     public struct RewiredAction

@@ -1,13 +1,17 @@
 {
   "name": "com.valax321.rewiredinspectorproperty",
   "displayName": "Rewired Inspector Properties",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "unity": "2019.2",
   "description": "Inspector-editable properties for working with Rewired inputs.",
   "keywords": [
     "Input",
     "Rewired",
-    "Action"
+    "Action",
+    "Player",
+    "Category",
+    "Layout",
+    "Binding"
   ],
   "category": "Input",
   "type": "library",

@@ -15,11 +15,18 @@ namespace Valax321.RewiredActionProperty.Editor
         [SettingsProvider]
         static SettingsProvider PreferenceGUI()
         {
-            return new RewiredSettingsProvider("Project/Rewired Inspector Property", SettingsScope.Project, new []
+            return new RewiredSettingsProvider("Project/Rewired Inspector Properties", SettingsScope.Project, new []
             {
                 "Rewired",
                 "Action",
                 "Player",
+                "Category",
+                "Map",
+                "Layout",
+                "Mouse",
+                "Keyboard",
+                "Joystick",
+                "Controller",
                 "ID",
                 "Classname"
             });
@@ -53,33 +60,56 @@ namespace Valax321.RewiredActionProperty.Editor
         public override void OnGUI(string searchContext)
         {
             var instance = RewiredSettingsManager.instance;
-            
-            var actionName = instance.Get("actionClassname", fallback: string.Empty);
-            var playerName = instance.Get("playerClassname", fallback: string.Empty);
-            
+
             EditorGUI.BeginChangeCheck();
             
-            EditorGUILayout.LabelField("Rewired Constant Classes", EditorStyles.boldLabel);
+            EditorGUILayout.HelpBox("These settings tell the property fields where to find the binding information. If these are not set to valid classes, the properties will not function.", MessageType.Info);
             EditorGUILayout.Separator();
+            EditorGUILayout.LabelField("Action Classes", EditorStyles.boldLabel);
 
-            var newName = ClassnameChoiceProperty("Action Class", actionName, (types) => from type in types
+            ClassnameChoiceProperty("actionClassname", "Action", (types) => from type in types
                 where type.Name.Equals("Action") &&
                       (type.FullName.Contains("Rewired") && !type.Assembly.FullName.Contains("Rewired"))
                 select type.AssemblyQualifiedName);
+            
+            EditorGUILayout.Separator();
+            EditorGUILayout.LabelField("Player Classes", EditorStyles.boldLabel);
 
-            var newPlayer = ClassnameChoiceProperty("Player Class", playerName, (types) => from type in types
+            ClassnameChoiceProperty("playerClassname", "Player", (types) => from type in types
                 where type.Name.Equals("Player") &&
                       (type.FullName.Contains("Rewired") && !type.Assembly.FullName.Contains("Rewired"))
                 select type.AssemblyQualifiedName);
-
-            if (newName != actionName)
-            {
-                instance.Set("actionClassname", newName);
-            }
-            if (newPlayer != playerName)
-            {
-                instance.Set("playerClassname", newPlayer);
-            }
+            
+            EditorGUILayout.Separator();
+            EditorGUILayout.LabelField("Category Classes", EditorStyles.boldLabel);
+            
+            ClassnameChoiceProperty("categoryClassname", "Map Category", (types) => from type in types
+                where type.Name.Equals("Category") &&
+                      (type.FullName.Contains("Rewired") && !type.Assembly.FullName.Contains("Rewired"))
+                select type.AssemblyQualifiedName);
+            
+            EditorGUILayout.Separator();
+            EditorGUILayout.LabelField("Layout Classes", EditorStyles.boldLabel);
+            
+            ClassnameChoiceProperty("mouseLayoutClassname", "Mouse Layout", (types) => from type in types
+                where type.Name.Equals("Mouse") && type.FullName.Contains("Layout") &&
+                      (type.FullName.Contains("Rewired") && !type.Assembly.FullName.Contains("Rewired"))
+                select type.AssemblyQualifiedName);
+            
+            ClassnameChoiceProperty("keyboardLayoutClassname", "Keyboard Layout", (types) => from type in types
+                where type.Name.Equals("Keyboard") && type.FullName.Contains("Layout") &&
+                      (type.FullName.Contains("Rewired") && !type.Assembly.FullName.Contains("Rewired"))
+                select type.AssemblyQualifiedName);
+            
+            ClassnameChoiceProperty("joystickLayoutClassname", "Joystick Layout", (types) => from type in types
+                where type.Name.Equals("Joystick") && type.FullName.Contains("Layout") &&
+                      (type.FullName.Contains("Rewired") && !type.Assembly.FullName.Contains("Rewired"))
+                select type.AssemblyQualifiedName);
+            
+            ClassnameChoiceProperty("customControllerLayoutClassname", "Custom Controller Layout", (types) => from type in types
+                where type.Name.Equals("CustomController") && type.FullName.Contains("Layout") &&
+                      (type.FullName.Contains("Rewired") && !type.Assembly.FullName.Contains("Rewired"))
+                select type.AssemblyQualifiedName);
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -87,19 +117,27 @@ namespace Valax321.RewiredActionProperty.Editor
             }
         }
         
-        internal static string ClassnameChoiceProperty(string name, string value, Func<TypeCache.TypeCollection, IEnumerable<string>> labelFunc)
+        internal static void ClassnameChoiceProperty(string key, string name, Func<TypeCache.TypeCollection, IEnumerable<string>> labelFunc)
         {
+            var instance = RewiredSettingsManager.instance;
+            var settingLabel = instance.Get(key, fallback: string.Empty);
+            
             var types = TypeCache.GetTypesDerivedFrom<object>();
             var labels = labelFunc(types).ToList();
 
             labels.Insert(0, "None");
 
             int index = 0;
-            if (labels.Contains(value))
-                index = labels.IndexOf(value);
+            if (labels.Contains(settingLabel))
+                index = labels.IndexOf(settingLabel);
 
             index = EditorGUILayout.Popup(new GUIContent(name), index, labels.ToArray());
-            return labels[index];
+            var label = labels[index];
+
+            if (label != settingLabel)
+            {
+                instance.Set(key, label);
+            }
         }
     }
 }

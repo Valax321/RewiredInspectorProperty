@@ -4,13 +4,23 @@ A set of inspector-editable types that help with safely and efficiently working 
 
 For use with Unity 2019.2+
 
-![Preview image](Documentation~/showcase.png)
+![Property Dropdown](Documentation~/showcase.png)
 
 # Usage
 
-The editable type is `RewiredAction` in the `Valax321.RewiredActionProperty` namespace. When this is used as a SerializedField in a inspectable class, the actions available in your RewiredConsts generated file will be listed as input actions in the drop-down for the field. This allows for non-programmers to mix and match input actions without touching the code or using strings that can't be validated beforehand.
+This package provides a number of property types that can be used to setup input through the Unity editor UI in a safe and efficient manner.
 
-The field can then be used to check input. As an example:
+| Type | Description |
+| ---- | ----------- |
+| RewiredAction | Used for input actions. |
+| RewiredPlayer | Used for player setups. |
+| RewiredMapCategory | Used for input map categories. |
+| RewiredMouseLayout | Used for mouse layouts. |
+| RewiredKeyboardLayout | Used for keyboard layouts. |
+| RewiredJoystickLayout | Used for joystick layouts. |
+| RewiredCustomControllerLayout | Used for custom layouts in Rewired's custom controller feature. |
+
+These properties can then be used programatically with Rewired in C#. As an example:
 ```csharp
 // Use the correct namespace
 using Valax321.RewiredActionProperty;
@@ -33,7 +43,9 @@ m_player = ReInput.players.GetPlayer(m_playerID);
 bool isJumping = m_player.GetButtonDown(m_jumpAction); // RewiredAction automatically casts to int so it can be used transparently
 ```
 
-By default RewiredAction looks for inputs in the RewiredConsts.Action class within `Assembly-CSharp.dll`. If you have a non-standard name or assembly location for your RewiredConsts, you can change the class used for the input listing in your project settings. The inspector will tell you if the class cannot be found so it will be obvious if this needs to be done.
+By default the properties look for Rewired information in the generated RewiredConsts file within the `Assembly-CSharp.dll` namespace. If you have a non-standard name or assembly location for your RewiredConsts, you can change the class used for the input listing in your project settings. The inspector will tell you if the class cannot be found so it will be obvious if this needs to be done.
+
+![Settings Menu](Documentation~/settings.png)
 
 ## License
 MIT license. See LICENSE for more.

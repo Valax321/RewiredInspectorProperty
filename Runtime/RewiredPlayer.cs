@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Valax321.RewiredActionProperty
 {
+    /// <summary>
+    /// Wrapper for a Rewired player ID.
+    /// </summary>
     [System.Serializable]
     public struct RewiredPlayer
     {
