@@ -1,5 +1,7 @@
 # Rewired Inspector Properties
 
+[![openupm](https://img.shields.io/npm/v/com.valax321.rewiredinspectorproperty?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.valax321.rewiredinspectorproperty/)
+
 A set of inspector-editable types that help with safely and efficiently working with [Rewired](https://assetstore.unity.com/packages/tools/utilities/rewired-21676) input actions. Designed as a modern Unity package.
 
 For use with Unity 2019.2+
