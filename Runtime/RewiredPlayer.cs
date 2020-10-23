@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Valax321.RewiredActionProperty
 {
@@ -10,25 +11,33 @@ namespace Valax321.RewiredActionProperty
     [System.Serializable]
     public struct RewiredPlayer
     {
-        [SerializeField] private int m_actionID;
+        [SerializeField]
+        [FormerlySerializedAs("m_actionID")]
+        private int m_playerID;
 
         /// <summary>
-        /// The ID associated with this action.
+        /// The ID associated with this player.
         /// </summary>
-        public int actionID => m_actionID;
+        [System.Obsolete("Use playerID instead")]
+        public int actionID => m_playerID;
+
+        /// <summary>
+        /// The ID associated with this player.
+        /// </summary>
+        public int playerID => m_playerID;
 
         /// <summary>
         /// Create a new <see cref="RewiredPlayer"/> instance with the specified ID.
         /// </summary>
-        /// <param name="actionID"></param>
-        public RewiredPlayer(int actionID)
+        /// <param name="playerID"></param>
+        public RewiredPlayer(int playerID)
         {
-            m_actionID = actionID;
+            m_playerID = playerID;
         }
 
         public static implicit operator int(RewiredPlayer @this)
         {
-            return @this.m_actionID;
+            return @this.m_playerID;
         }
     }
 }
