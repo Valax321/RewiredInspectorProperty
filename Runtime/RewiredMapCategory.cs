@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Valax321.RewiredActionProperty
@@ -6,7 +7,7 @@ namespace Valax321.RewiredActionProperty
     /// Wrapper class for a Rewired map category ID.
     /// </summary>
     [System.Serializable]
-    public struct RewiredMapCategory
+    public struct RewiredMapCategory : IEquatable<RewiredMapCategory>
     {
         [SerializeField] private int m_categoryID;
 
@@ -27,6 +28,31 @@ namespace Valax321.RewiredActionProperty
         public static implicit operator int(RewiredMapCategory @this)
         {
             return @this.m_categoryID;
+        }
+
+        public bool Equals(RewiredMapCategory other)
+        {
+            return m_categoryID == other.m_categoryID;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is RewiredMapCategory other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return categoryID;
+        }
+
+        public static bool operator ==(RewiredMapCategory left, RewiredMapCategory right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(RewiredMapCategory left, RewiredMapCategory right)
+        {
+            return !left.Equals(right);
         }
     }
 }
