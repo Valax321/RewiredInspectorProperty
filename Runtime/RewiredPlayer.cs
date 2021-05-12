@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Valax321.RewiredActionProperty
     /// Wrapper for a Rewired player ID.
     /// </summary>
     [System.Serializable]
-    public struct RewiredPlayer
+    public struct RewiredPlayer : IEquatable<RewiredPlayer>
     {
         [SerializeField] private int m_actionID;
 
@@ -29,6 +30,31 @@ namespace Valax321.RewiredActionProperty
         public static implicit operator int(RewiredPlayer @this)
         {
             return @this.m_actionID;
+        }
+
+        public bool Equals(RewiredPlayer other)
+        {
+            return m_actionID == other.m_actionID;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is RewiredPlayer other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return actionID;
+        }
+
+        public static bool operator ==(RewiredPlayer left, RewiredPlayer right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(RewiredPlayer left, RewiredPlayer right)
+        {
+            return !left.Equals(right);
         }
     }
 }
