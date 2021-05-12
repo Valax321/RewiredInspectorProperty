@@ -9,6 +9,6 @@ namespace Valax321.RewiredActionProperty.Editor
     public class PlayerPropertyDrawer : RewiredBasePropertyDrawer
     {
         protected override string classnameSettingsKey => "playerClassname";
-        protected override string propertyNameField => "m_actionID";
+        protected override string propertyNameField => "m_playerID";
     }
 }
