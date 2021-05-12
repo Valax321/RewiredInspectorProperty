@@ -43,7 +43,7 @@ namespace Valax321.RewiredActionProperty
 
         public bool Equals(RewiredPlayer other)
         {
-            return m_actionID == other.m_actionID;
+            return m_playerID == other.m_playerID;
         }
 
         public override bool Equals(object obj)
@@ -53,7 +53,7 @@ namespace Valax321.RewiredActionProperty
 
         public override int GetHashCode()
         {
-            return actionID;
+            return playerID;
         }
 
         public static bool operator ==(RewiredPlayer left, RewiredPlayer right)
