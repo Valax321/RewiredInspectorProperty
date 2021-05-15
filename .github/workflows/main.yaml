@@ -1,0 +1,35 @@
+name: Check Package
+
+on: [ push, pull_request ]
+
+jobs:
+  DoTest:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout unity host project
+      - name: Checkout Unity Host Project
+        uses: actions/checkout@v2
+        with:
+          repository: Valax321/UnityPackageTesting
+          path: UnityProject
+          
+      # Checkout actual package
+      - name: Checkout Package
+        uses: actions/checkout@v2
+        with:
+          path: UnityProject/Packages/com.valax321.rewiredinspectorproperty
+
+      # Cache library folder
+      - uses: actions/cache@v2
+        with:
+          path: UnityProject/Library
+          key: UnityProject-Library
+      
+      # Run tests
+      - name: Run Unity Tests
+        uses: game-ci/unity-test-runner@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: UnityProject
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
