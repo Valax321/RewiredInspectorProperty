@@ -1,4 +1,4 @@
-name: Check Package
+name: Build 🚀
 
 on: [ push, pull_request ]
 
@@ -7,14 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checkout unity host project
-      - name: Checkout Unity Host Project
+      - name: Checkout Unity Host Project 🔎
         uses: actions/checkout@v2
         with:
           repository: Valax321/UnityPackageTesting
           path: UnityProject
           
       # Checkout actual package
-      - name: Checkout Package
+      - name: Checkout Package 🔎
         uses: actions/checkout@v2
         with:
           path: UnityProject/Packages/com.valax321.rewiredinspectorproperty
@@ -26,7 +26,7 @@ jobs:
           key: UnityProject-Library
       
       # Run tests
-      - name: Run Unity Tests
+      - name: Run Unity Tests 🧪
         uses: game-ci/unity-test-runner@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
