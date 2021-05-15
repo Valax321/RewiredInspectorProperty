@@ -50,5 +50,6 @@ By default the properties look for Rewired information in the generated RewiredC
 
 ![Settings Menu](Documentation~/settings.png)
 
+
 ## License
 MIT license. See LICENSE for more.
